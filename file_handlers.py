@@ -3,8 +3,8 @@
 import os
 
 
-class TemporaryFolder(object):
-    def __init__(self, path):
+class FolderHandler(object):
+    def __init__(self):
         self.path = None  # place to make temp folder
         self.open = False  # flag for open or closed
         self.filenames = []  # place to hold paths to temp files
@@ -14,15 +14,17 @@ class TemporaryFolder(object):
 
         if not self.path.endswith("/"):
             self.path = self.path + "/"
-        self.already_exists = True
 
         # if the folder already exists, make sure wr keep track so that we don't remove anything we
         # didn't want to
         if not os.path.isdir(path):
             os.system("mkdir {dir}".format(dir=self.path))
             self.already_exists = False
+        else:
+            self.already_exists = True
 
         self.open = True
+        return self.path
 
     def add_file_path(self, filename):
         if self.open is True:
