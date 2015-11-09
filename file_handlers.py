@@ -43,7 +43,10 @@ class FolderHandler(object):
 
     def remove_folder(self):
         for _ in self.filenames:
-            os.remove(_)
+            try:
+                os.remove(_)
+            except OSError:
+                continue
         if self.already_exists:
             self.open = False
             return
