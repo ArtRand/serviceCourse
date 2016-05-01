@@ -10,7 +10,7 @@ class FolderHandler(object):
         self.filenames = []  # place to hold paths to temp files
 
     def open_folder(self, path):
-        self.path = path
+        self.path = os.path.expanduser(path)
 
         if not self.path.endswith("/"):
             self.path = self.path + "/"
