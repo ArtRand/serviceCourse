@@ -118,6 +118,12 @@ def read_fasta(fasta_file, ignore_case=True):
         fasta = (title, comment, seq)
         yield fasta
 
+def fasta_hash(fasta_file):
+    seq_hash = {}
+    for t, c, s in read_fasta(fasta_file):
+        seq_hash[t] = s
+    return seq_hash
+
 def read_fasta_with_quality(fasta_file, qual_file):
     """
     Generic FASTA and .qual parser.  
